@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive PD: Practice Activities</title>
+    <!-- Chosen Palette: Warm Neutrals with Teal Accent -->
+    <!-- Application Structure Plan: This standalone application focuses solely on the interactive practice activities from the larger PD. It presents three distinct activities: MTSS Tier Identification, Comprehensive Case Study, and SEL Check-in Tool Generation. This structure allows users to directly engage with the practical application of the concepts without the broader context, ideal for focused practice or quick reference. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: MTSS Tier Application Activity -> Goal: Practice identifying tiers and interventions -> Viz/Method: Interactive Scenario with Dropdowns (JS) -> Interaction: User selects tier and intervention, receives feedback -> Justification: Directly assesses understanding of MTSS tiered support application.
+        - Report Info: Case Study Activity (General Application) -> Goal: Apply knowledge -> Viz/Method: Interactive Scenario Module (JS) -> Interaction: User reads a scenario and selects interventions from options, receiving feedback -> Justification: Actively engages the user in problem-solving, moving from theory to practical application.
+        - Report Info: SEL Check-in Tool Activity -> Goal: Develop materials -> Viz/Method: SEL Tool Generator (JS) -> Interaction: User selects an age group to see a tailored example tool -> Justification: Provides a tangible, customizable takeaway, making the content immediately useful.
+        - Graphics/Videos from PPT: Replaced with descriptive text placeholders or Unicode icons due to constraints (no raster images, no external video embeds).
+        - NEW VISUALS: Added Unicode icons (e.g., 🎯, 🔍, 🛠️) to activity headers to enhance visual appeal and convey meaning without using external images.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        
+        <!-- Section: Practice -->
+        <section id="practice" class="space-y-12">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">Interactive Practice Activities</h2>
+                <p class="mt-4 text-lg text-stone-600">Engage with these activities to apply your learning about MTSS, RtI, PBIS, and SEL in practical scenarios. Each activity is designed to deepen your understanding and provide hands-on experience.</p>
+            </div>
+            
+            <!-- MTSS Tier Identification Activity -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Activity 1: MTSS Tier Identification 🎯</h3>
+                <p class="mb-4 text-stone-600">Read the student scenario and select the most appropriate MTSS tier and a corresponding intervention. Click "Check Answer" to get feedback.</p>
+                <div id="mtss-scenario-container">
+                    <p class="mb-4"><strong>Scenario:</strong> "Maria," a 2nd-grade student, consistently struggles with basic math facts, despite receiving high-quality whole-class instruction. She often takes longer than her peers to complete simple addition and subtraction problems.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="mtss-tier-select" class="block text-md font-medium text-stone-700">Select the most appropriate MTSS Tier:</label>
+                            <select id="mtss-tier-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                                <option value="">Choose a Tier</option>
+                                <option value="tier1">Tier 1: Universal Support</option>
+                                <option value="tier2">Tier 2: Targeted Support</option>
+                                <option value="tier3">Tier 3: Intensive Support</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="mtss-intervention-select" class="block text-md font-medium text-stone-700">Select a suitable intervention for this tier:</label>
+                            <select id="mtss-intervention-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                                <option value="">Choose an Intervention</option>
+                                <option value="universal_math_games">School-wide math fact fluency games for all students</option>
+                                <option value="small_group_math">Small-group instruction focused on specific math fact strategies</option>
+                                <option value="individual_math_tutoring">Daily one-on-one tutoring with a specialist focusing on foundational number sense</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="check-mtss-answer" class="mt-6 px-4 py-2 bg-teal-600 text-white font-semibold rounded-md shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Check Answer</button>
+                    <div id="mtss-feedback" class="mt-6 p-4 bg-stone-100 rounded-lg text-sm text-stone-700 min-h-[50px]">Select options and click "Check Answer" for feedback.</div>
+                </div>
+            </div>
+
+            <!-- Case Study (General Application) -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Activity 2: Comprehensive Case Study Application 🔍</h3>
+                <div id="case-study-container">
+                    <p class="mb-4"><strong>Scenario:</strong> "Leo," a 4th-grade student, frequently calls out in class, has difficulty starting assignments, and his reading scores are below grade level. He appears to have friends but struggles when asked to work in groups.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="tier1-select" class="block text-md font-medium text-stone-700">Select a potential Tier 1 Support:</label>
+                            <select id="tier1-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                                <option value="">Choose an option</option>
+                                <option value="good">Whole-class review of behavioral expectations and routines.</option>
+                                <option value="bad">Move Leo's desk to the back of the room.</option>
+                            </select>
+                        </div>
+                         <div>
+                            <label for="tier2-select" class="block text-md font-medium text-stone-700">Select a potential Tier 2 Intervention:</label>
+                            <select id="tier2-select" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                               <option value="">Choose an option</option>
+                               <option value="good">Small-group reading intervention and a social skills group on collaboration.</option>
+                               <option value="bad">Assign extra homework to catch up.</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div id="case-study-feedback" class="mt-6 p-4 bg-stone-100 rounded-lg text-sm text-stone-700 min-h-[50px]">Select options to see feedback.</div>
+                </div>
+            </div>
+
+            <!-- SEL Tool Generator -->
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">Activity 3: SEL Check-in Tool Generator 🛠️</h3>
+                <p class="mb-4 text-stone-600">Select an age group to generate an example of a simple SEL check-in tool you can adapt for your classroom.</p>
+                <div class="flex items-center space-x-4 mb-6">
+                    <label for="age-group" class="font-medium">Age Group:</label>
+                    <select id="age-group" class="block w-full max-w-xs pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md">
+                        <option value="k-5">Grades K-5</option>
+                        <option value="6-8">Grades 6-8</option>
+                        <option value="9-12">Grades 9-12</option>
+                    </select>
+                </div>
+                <div id="sel-tool-output" class="p-6 bg-teal-50 border-2 border-dashed border-teal-200 rounded-lg">
+                    <!-- Tool will be generated here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <p>Professional Development Resource | &copy; 2025</p>
+            <p class="text-sm text-stone-400 mt-2">This interactive application is a representation of the PD activities.</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // MTSS Tier Identification Activity Logic
+    const mtssTierSelect = document.getElementById('mtss-tier-select');
+    const mtssInterventionSelect = document.getElementById('mtss-intervention-select');
+    const checkMtssAnswerBtn = document.getElementById('check-mtss-answer');
+    const mtssFeedback = document.getElementById('mtss-feedback');
+
+    checkMtssAnswerBtn.addEventListener('click', () => {
+        const selectedTier = mtssTierSelect.value;
+        const selectedIntervention = mtssInterventionSelect.value;
+
+        if (!selectedTier || !selectedIntervention) {
+            mtssFeedback.innerHTML = 'Please select both a Tier and an Intervention.';
+            mtssFeedback.className = 'mt-6 p-4 bg-yellow-100 rounded-lg text-sm text-yellow-800 min-h-[50px]';
+            return;
+        }
+
+        if (selectedTier === 'tier2' && selectedIntervention === 'small_group_math') {
+            mtssFeedback.innerHTML = '<strong>Correct!</strong> Maria\'s consistent struggle despite Tier 1 instruction suggests a need for targeted Tier 2 support, like small-group math instruction.';
+            mtssFeedback.className = 'mt-6 p-4 bg-green-100 rounded-lg text-sm text-green-800 min-h-[50px]';
+        } else if (selectedTier === 'tier1' && selectedIntervention === 'universal_math_games') {
+            mtssFeedback.innerHTML = '<strong>Not quite.</strong> While universal games are good for Tier 1, Maria is already struggling *despite* Tier 1. She likely needs something more targeted.';
+            mtssFeedback.className = 'mt-6 p-4 bg-red-100 rounded-lg text-sm text-red-800 min-h-[50px]';
+        } else if (selectedTier === 'tier3' && selectedIntervention === 'individual_math_tutoring') {
+            mtssFeedback.innerHTML = '<strong>Not quite.</strong> Tier 3 is for very intensive needs after Tier 2 has been attempted. Maria\'s current struggle suggests a Tier 2 intervention is the next logical step.';
+            mtssFeedback.className = 'mt-6 p-4 bg-red-100 rounded-lg text-sm text-red-800 min-h-[50px]';
+        } else {
+            mtssFeedback.innerHTML = '<strong>Incorrect.</strong> Re-evaluate Maria\'s needs and the purpose of each MTSS tier.';
+            mtssFeedback.className = 'mt-6 p-4 bg-red-100 rounded-lg text-sm text-red-800 min-h-[50px]';
+        }
+    });
+
+    // Case Study (General Application) Logic
+    const caseStudyFeedback = document.getElementById('case-study-feedback');
+    document.getElementById('tier1-select').addEventListener('change', function(e) {
+        if (e.target.value === 'good') {
+            caseStudyFeedback.innerHTML = '<strong>Tier 1 Feedback:</strong> Correct. Reviewing expectations for everyone is a strong universal support that benefits all students and doesn\'t single anyone out.';
+            caseStudyFeedback.className = 'mt-6 p-4 bg-green-100 rounded-lg text-sm text-green-800 min-h-[50px]';
+        } else if (e.target.value === 'bad') {
+             caseStudyFeedback.innerHTML = '<strong>Tier 1 Feedback:</strong> This could be an outcome, but it is not a proactive Tier 1 support. Isolation can sometimes worsen behavior and does not teach replacement skills.';
+             caseStudyFeedback.className = 'mt-6 p-4 bg-red-100 rounded-lg text-sm text-red-800 min-h-[50px]';
+        } else {
+            caseStudyFeedback.innerHTML = 'Select options to see feedback.';
+            caseStudyFeedback.className = 'mt-6 p-4 bg-stone-100 rounded-lg text-sm text-stone-700 min-h-[50px]';
+        }
+    });
+     document.getElementById('tier2-select').addEventListener('change', function(e) {
+        if (e.target.value === 'good') {
+            caseStudyFeedback.innerHTML = '<strong>Tier 2 Feedback:</strong> Excellent. This addresses both his academic (reading) and behavioral/social (group work) needs with targeted, small-group interventions.';
+            caseStudyFeedback.className = 'mt-6 p-4 bg-green-100 rounded-lg text-sm text-green-800 min-h-[50px]';
+        } else if (e.target.value === 'bad') {
+             caseStudyFeedback.innerHTML = '<strong>Tier 2 Feedback:</strong> This approach may increase Leo\'s frustration without addressing the root cause of his academic and behavioral struggles.';
+             caseStudyFeedback.className = 'mt-6 p-4 bg-red-100 rounded-lg text-sm text-red-800 min-h-[50px]';
+        } else {
+            caseStudyFeedback.innerHTML = 'Select options to see feedback.';
+            caseStudyFeedback.className = 'mt-6 p-4 bg-stone-100 rounded-lg text-sm text-stone-700 min-h-[50px]';
+        }
+    });
+
+    // SEL Tool Generator Logic
+    const ageGroupSelect = document.getElementById('age-group');
+    const selToolOutput = document.getElementById('sel-tool-output');
+    
+    const selTools = {
+        'k-5': `
+            <h4 class="font-bold text-lg mb-2">Mood Meter (Grades K-5)</h4>
+            <p class="mb-4 text-sm">Use a chart with emojis for happy, sad, angry, tired, excited. Students place a clothespin or sticky note with their name on the emoji that matches their feeling.</p>
+            <div class="flex justify-around items-center text-4xl"><span>😊</span><span>😟</span><span>😠</span><span>😴</span><span>🎉</span></div>
+        `,
+        '6-8': `
+            <h4 class="font-bold text-lg mb-2">One-Word Check-in (Grades 6-8)</h4>
+            <p class="text-sm">As a bell-ringer, have students write down one word on a sticky note that describes how they are feeling today and post it on a designated board as they walk in.</p>
+        `,
+        '9-12': `
+            <h4 class="font-bold text-lg mb-2">Digital Poll Check-in (Grades 9-12)</h4>
+            <p class="text-sm">Use a quick, anonymous digital poll (e.g., Google Forms, Mentimeter) with a question like: "On a scale of 1-5, how is your energy/focus level today?" This respects privacy while gathering data.</p>
+        `
+    };
+
+    function updateSelTool() {
+        selToolOutput.innerHTML = selTools[ageGroupSelect.value];
+    }
+    ageGroupSelect.addEventListener('change', updateSelTool);
+    updateSelTool(); 
+});
+</script>
+
+</body>
+</html>
